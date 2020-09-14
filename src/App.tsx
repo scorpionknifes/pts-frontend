@@ -2,18 +2,14 @@ import React from 'react'
 import './App.css'
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { AppBar } from './Components'
+
+// pages
+import { HomePage, StoryPage } from './Pages'
 
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#c30000',
-        },
-        secondary: {
-            main: '#c30000',
-        },
-    },
     breakpoints: {
         values: {
             xs: 0,
@@ -30,8 +26,8 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <Router>
                 <Switch>
-                    <Route exact path="/login" />
-                    <Route exact path="/login" />
+                    <Route exact path="/" component={HomePage} />
+                    <Route exact path="/story" component={StoryPage} />
                 </Switch>
             </Router>
         </ThemeProvider>

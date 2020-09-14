@@ -1,14 +1,11 @@
 import React from 'react'
-import { fade, Theme, AppBar as Bar, Typography, InputBase } from '@material-ui/core'
+import { fade, Theme, AppBar as Bar, Typography, InputBase, Toolbar, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
 
 const useStyles = makeStyles((theme: Theme) => ({
     grow: {
         flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
     },
     title: {
         flexGrow: 1,
@@ -50,28 +47,34 @@ const useStyles = makeStyles((theme: Theme) => ({
             width: '20ch',
         },
     },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+    },
 }));
 
 
 const AppBar = () => {
     const classes = useStyles();
     return (
-        <Bar>
-            <Typography variant="h6" className={classes.title}> Pass the Story</Typography>
-            <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                    <SearchIcon />
+        <Bar position="fixed" className={classes.appBar}>
+            <Toolbar>
+                <Typography variant="h6" className={classes.title}> Pass the Story</Typography>
+                <div className={classes.search}>
+                    <div className={classes.searchIcon}>
+                        <SearchIcon />
+                    </div>
+                    <InputBase
+                        placeholder="Search…"
+                        classes={{
+                            root: classes.inputRoot,
+                            input: classes.inputInput,
+                        }}
+                        inputProps={{ 'aria-label': 'search' }}
+                    />
                 </div>
-                <InputBase
-                    placeholder="Search…"
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}
-                    inputProps={{ 'aria-label': 'search' }}
-                />
-            </div>
-            <div className={classes.grow} />
+                <div className={classes.grow} />
+                <Button color="inherit">Anonymous2123</Button>
+            </Toolbar>
         </Bar>
     )
 }

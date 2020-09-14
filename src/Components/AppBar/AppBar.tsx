@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme: Theme) => ({
             width: 'auto',
         },
         display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+        [theme.breakpoints.up('md')]: {
+            display: 'flex',
+        },
 
     },
     searchIcon: {

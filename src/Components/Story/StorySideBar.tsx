@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
 type StorySideBarProps = {
     players: Players,
     online: string[],
-    select: string
+    select: string,
+    setSelect: (select: string)=> void
 }
 
 const StorySideBar = (props: StorySideBarProps) => {
@@ -29,6 +30,8 @@ const StorySideBar = (props: StorySideBarProps) => {
 
     const Player = (player: string) => {
         return <Typography
+            onMouseEnter={() => props.setSelect(player)}
+            onMouseLeave={() => props.setSelect("")}
             key={player}
             style={{
                 color: props.players[player],

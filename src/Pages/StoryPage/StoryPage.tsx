@@ -71,7 +71,7 @@ const StoryPage = () => {
                 <StoryParagraph data={data} players={players} select={select} setSelect={setSelect} />
                 <StoryControl />
             </main>
-            <StorySideBar online={online} players={players} select={select} />
+            <StorySideBar online={online} players={players} select={select} setSelect={setSelect}/>
         </div>
     );
 }

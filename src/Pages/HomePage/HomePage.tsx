@@ -24,7 +24,7 @@ const HomePage = () => {
         <main className={classes.content}>
             <div className={classes.toolbar} />
             <Grid container spacing={3}>
-                <StoryCard />
+                <StoryCard name="Anonymous2020's Story" online={2} people={4} tags={["test", "test", "test"]} id=""/>
             </Grid>
         </main>
 

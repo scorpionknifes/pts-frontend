@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme: Theme) => ({
             marginLeft: theme.spacing(3),
             width: 'auto',
         },
+        display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+
     },
     searchIcon: {
         padding: theme.spacing(0, 2),

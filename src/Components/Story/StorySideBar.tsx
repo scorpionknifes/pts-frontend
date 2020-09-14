@@ -30,7 +30,10 @@ const StorySideBar = (props: StorySideBarProps) => {
     const Player = (player: string) => {
         return <Typography
             key={player}
-            style={{ color: props.players[player], fontWeight: props.select === player ? 'bold' : 'normal' }}>
+            style={{
+                color: props.players[player],
+                fontWeight: props.select === player ? 'bold' : 'normal'
+            }}>
             {player}
         </Typography>
     }

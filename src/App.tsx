@@ -3,7 +3,6 @@ import './App.css'
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { AppBar } from './Components'
 
 // pages
 import { HomePage, StoryPage } from './Pages'

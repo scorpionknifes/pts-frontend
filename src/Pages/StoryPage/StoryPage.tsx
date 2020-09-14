@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 
 import { AppBar, StoryParagraph, StoryControl, StorySideBar } from '../../Components'
-import { Players, StoryType } from '../../Common/StoryTypes';
+import { Players, StoryType } from '../../Commons/StoryTypes';
 
 const data: StoryType[] = [
     {
@@ -60,18 +60,18 @@ const StoryPage = () => {
     const [select, setSelect] = useState<string>("")
     const [players, setPlayers] = useState<Players>({})
 
-    useEffect(()=>{
+    useEffect(() => {
         setPlayers(GenerateColor(data))
-    },[])
+    }, [])
     return (
         <div className={classes.root}>
             <AppBar />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <StoryParagraph data={data} players={players} setSelect={setSelect}/>
+                <StoryParagraph data={data} players={players} select={select} setSelect={setSelect} />
                 <StoryControl />
             </main>
-            <StorySideBar online={online} players={players} select={select}/>
+            <StorySideBar online={online} players={players} select={select} />
         </div>
     );
 }

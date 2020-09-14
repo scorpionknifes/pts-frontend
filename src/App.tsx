@@ -5,7 +5,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 // pages
-import { HomePage, StoryPage } from './Pages'
+import { HomePage, StoryPage, AddStoryPage } from './Pages'
 
 
 const theme = createMuiTheme({
@@ -27,6 +27,7 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/story" component={StoryPage} />
+                    <Route exact path="/new" component={AddStoryPage} />
                 </Switch>
             </Router>
         </ThemeProvider>

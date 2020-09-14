@@ -2,6 +2,7 @@ import React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { AppBar, StoryCard } from '../../Components';
 import { Grid } from '@material-ui/core';
+import AddButton from '../../Components/Button/AddButton';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -23,6 +24,8 @@ const HomePage = () => {
         <AppBar />
         <main className={classes.content}>
             <div className={classes.toolbar} />
+            <AddButton add="/new" />
+            <br/>
             <Grid container spacing={3}>
                 <StoryCard name="Anonymous2020's Story" online={2} people={4} tags={["test", "test", "test"]} id=""/>
             </Grid>

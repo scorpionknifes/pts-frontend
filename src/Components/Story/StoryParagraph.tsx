@@ -17,7 +17,7 @@ const StoryParagraph = (props: StoryProps) => {
 
 const Turn = (data: StoryType, players: Players, select: string, setSelect: (select: string) => void) => {
     let color = players[data.name]
-    return <span
+    return <span key={data.value}
         onMouseEnter={() => setSelect(data.name)}
         onMouseLeave={() => setSelect("")}
         style={{

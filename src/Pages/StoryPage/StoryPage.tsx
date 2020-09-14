@@ -4,6 +4,8 @@ import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 
 import { AppBar, StoryParagraph, StoryControl, StorySideBar } from '../../Components'
 import { Players, StoryType } from '../../Commons/StoryTypes';
+import { Divider, Typography } from '@material-ui/core';
+import Tag from '../../Components/Tag/Tag';
 
 const data: StoryType[] = [
     {
@@ -23,6 +25,13 @@ const data: StoryType[] = [
         value: "time"
     }
 ]
+
+const tags = [
+    "test",
+    "test",
+    "test"
+]
+
 
 const online: string[] = [
     "anonymous1020", "anonymous2000"
@@ -68,10 +77,14 @@ const StoryPage = () => {
             <AppBar />
             <main className={classes.content}>
                 <div className={classes.toolbar} />
+                <Typography variant="h4">Anonymous2123's Story</Typography>
+
+                <Typography>Theme: {tags.map((tag, i) => <Tag key={i} name={tag}></Tag>)}</Typography>
+                <Divider style={{ margin: 10 }} />
                 <StoryParagraph data={data} players={players} select={select} setSelect={setSelect} />
                 <StoryControl />
             </main>
-            <StorySideBar online={online} players={players} select={select} setSelect={setSelect}/>
+            <StorySideBar online={online} players={players} select={select} setSelect={setSelect} />
         </div>
     );
 }

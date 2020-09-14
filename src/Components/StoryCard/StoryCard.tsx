@@ -47,9 +47,8 @@ const StoryCard = (props: StoryCardProps) => {
             <Grid container direction="row">
                 <Typography style={{ flexGrow: 1 }}>{props.name}</Typography>
                 <Grid className={classes.tags} >
-                    {props.tags.map(tag => <Tag name={tag}></Tag>)}
+                    {props.tags.map((tag, i) => <Tag key={i} name={tag}></Tag>)}
                 </Grid>
-
                 <Typography style={{ color: '#32CD32', fontWeight: 'bold' }}>6</Typography>
                 <Typography>/</Typography>
                 <Typography style={{ fontWeight: 'bold' }}>10</Typography>

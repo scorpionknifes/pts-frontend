@@ -2,6 +2,7 @@ import React from 'react'
 import { fade, Theme, AppBar as Bar, Typography, InputBase, Toolbar, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
     grow: {
@@ -9,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     title: {
         flexGrow: 1,
+        cursor: 'pointer'
     },
     search: {
         position: 'relative',
@@ -60,10 +62,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const AppBar = () => {
     const classes = useStyles();
+    const history = useHistory();
     return (
         <Bar position="fixed" className={classes.appBar}>
             <Toolbar>
-                <Typography variant="h6" className={classes.title}> Pass the Story</Typography>
+                <Typography variant="h6" className={classes.title} onClick={()=>history.push('/')}> Pass the Story</Typography>
                 <div className={classes.search}>
                     <div className={classes.searchIcon}>
                         <SearchIcon />

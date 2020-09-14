@@ -10,7 +10,7 @@ const StoryControl = () => {
                 label="Input"
                 placeholder="Placeholder"
                 multiline
-                style={{margin: 10}}
+                style={{margin: 10, width: 500}}
             />
             <Button variant="contained" color="primary" style={{margin: 10}}>Submit</Button>
         </Grid>

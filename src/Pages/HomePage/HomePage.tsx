@@ -18,6 +18,31 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+type Story = {
+    id: string,
+    name: string,
+    online: number, 
+    people: number,
+    tags: string[],
+}
+
+const stories: Story[] = [
+    {
+        id: "test",
+        name: "Anonymous2032's Story",
+        online: 2,
+        people: 3,
+        tags: ["test", "hello", "lol"]
+    },
+    {
+        id: "test2",
+        name: "Anonymous2043's Story",
+        online: 2,
+        people: 3,
+        tags: ["test2", "hello", "lols"]
+    }
+]
+
 const HomePage = () => {
     const classes = useStyles();
     return <div className={classes.root}>
@@ -27,7 +52,7 @@ const HomePage = () => {
             <AddButton add="/new" />
             <br/>
             <Grid container spacing={3}>
-                <StoryCard name="Anonymous2020's Story" online={2} people={4} tags={["test", "test", "test"]} id=""/>
+                {stories.map(story=><StoryCard name={story.name} online={story.online} people={story.people} tags={story.tags} id={story.id}/>)}
             </Grid>
         </main>
 

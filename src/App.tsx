@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 // pages
 import { HomePage, StoryPage, AddStoryPage } from './Pages'
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 
 
 const theme = createMuiTheme({
@@ -20,17 +21,28 @@ const theme = createMuiTheme({
     },
 });
 
+const httpLink = createHttpLink({
+    uri: process.env.REACT_APP_GRAPHQL_URL
+})
+
+const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: httpLink,
+})
+
 const App = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <Router>
-                <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/story" component={StoryPage} />
-                    <Route exact path="/new" component={AddStoryPage} />
-                </Switch>
-            </Router>
-        </ThemeProvider>
+        <ApolloProvider client={client}>
+            <ThemeProvider theme={theme}>
+                <Router>
+                    <Switch>
+                        <Route exact path="/" component={HomePage} />
+                        <Route exact path="/story" component={StoryPage} />
+                        <Route exact path="/new" component={AddStoryPage} />
+                    </Switch>
+                </Router>
+            </ThemeProvider>
+        </ApolloProvider>
     )
 }
 

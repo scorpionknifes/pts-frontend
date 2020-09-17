@@ -49,7 +49,7 @@ const HomePage = () => {
             <AddButton add="/new" />
             <br />
             <Grid container spacing={3}>
-                {data?.stories.map(story => <StoryCard name={story.name} count={story.count} people={story.people} tags={story.tags.split(',')} id={story.id} />)}
+                {data?.stories.slice(0).reverse().map(story => <StoryCard name={story.name} count={story.count} people={story.people} tags={story.tags.split(',')} id={story.id} />)}
             </Grid>
         </main>
 

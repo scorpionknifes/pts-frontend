@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 
@@ -9,10 +9,11 @@ import Tag from '../../Components/Tag/Tag';
 import { Story, StoryTurns } from '../../GraphQL/Types/StoryType';
 import { StoryQuery } from '../../GraphQL';
 import { useParams } from 'react-router-dom';
-import { useQuery, useSubscription } from '@apollo/client';
+import { useMutation, useQuery, useSubscription } from '@apollo/client';
 import { ParamType } from '../../Commons/ContextTypes';
 import { Turn } from '../../GraphQL/Types/TurnType';
-import { TurnsSubscription } from '../../GraphQL/Queries/TurnQuery';
+import { TurnCreate, TurnsSubscription } from '../../GraphQL/Queries/TurnQuery';
+import { UserContext } from '../../Contexts/UserContext';
 
 const drawerWidth = 240;
 
@@ -43,26 +44,51 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const StoryPage = () => {
     const classes = useStyles()
+    const { userID } = useContext(UserContext)
     const [select, setSelect] = useState<string>("")
     const [active, setActive] = useState<string[]>([])
     const [players, setPlayers] = useState<Players>({})
+    const [turns, setTurns] = useState<Turn[]>([])
+    const [create] = useMutation(TurnCreate)
     let { id } = useParams<ParamType>()
 
     const { loading, data } = useQuery<{ story: StoryTurns }>(StoryQuery, {
         variables: { id: parseInt(id) }
     });
 
+    const turnSub = useSubscription<{ turns: Turn }>(
+        TurnsSubscription,
+        { variables: { story: id } }
+    );
+
+    const handleTurn = (input: string) => {
+        create({
+            variables: {
+                input:{
+                    userID: userID,
+                    storyID: parseInt(id),
+                    value: input
+                }
+            }
+        })
+    }
+
+    useEffect(() => {
+        if (turnSub.data !== undefined) {
+            setTurns([...turns, turnSub.data?.turns])
+            if (!active.includes(turnSub.data?.turns.user.name)){
+                setActive([...active, turnSub.data?.turns.user.name])
+            }
+            
+        }
+    }, [turnSub.data])
+
     useEffect(() => {
         if (data !== undefined) {
             setPlayers(GenerateAllColor(data?.story.turns))
+            setTurns(data?.story.turns)
         }
-
     }, [data])
-
-
-    useEffect(() => {
-        //setPlayers(GenerateColor(data))
-    }, [])
 
     if (loading) {
         return <Spinner />
@@ -77,8 +103,8 @@ const StoryPage = () => {
 
                 <Typography>Theme: {data?.story.tags?.split(',').map((tag, i) => <Tag key={i} name={tag}></Tag>)}</Typography>
                 <Divider style={{ margin: 10 }} />
-                <StoryParagraph data={data?.story} players={players} select={select} setSelect={setSelect} />
-                <StoryControl />
+                <StoryParagraph data={turns} players={players} select={select} setSelect={setSelect} />
+                <StoryControl handleTurn={handleTurn}/>
             </main>
             <StorySideBar active={active} players={players} select={select} setSelect={setSelect} />
         </div>
@@ -87,7 +113,7 @@ const StoryPage = () => {
 
 const GenerateAllColor = (data: Turn[]): Players => {
     let players: Players = {}
-    data.map(turn => players[turn.user.name] = RandomColor())
+    data.map(turn => players[turn.user?.name] = RandomColor())
     return players
 }
 

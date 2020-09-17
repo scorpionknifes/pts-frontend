@@ -5,7 +5,7 @@ import { StoryTurns } from '../../GraphQL/Types/StoryType'
 import { Turn } from '../../GraphQL/Types/TurnType'
 
 type StoryProps = {
-    data: StoryTurns | undefined,
+    data: Turn[] | undefined,
     players: Players,
     select: string,
     setSelect: (select: string) => void
@@ -13,13 +13,13 @@ type StoryProps = {
 
 const StoryParagraph = (props: StoryProps) => {
     return <Typography paragraph>
-        {props.data?.turns?.map(item => DisplayTurn(item, props.players, props.select, props.setSelect))}
+        {props.data?.map(item => DisplayTurn(item, props.players, props.select, props.setSelect))}
     </Typography>
 }
 
 const DisplayTurn = (data: Turn, players: Players, select: string, setSelect: (select: string) => void) => {
-    let color = players[data.user.name]
-    return <span key={data.value}
+    let color = players[data?.user?.name]
+    return <span key={Math.random()}
         onMouseEnter={() => setSelect(data.user.name)}
         onMouseLeave={() => setSelect("")}
         style={{

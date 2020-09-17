@@ -68,6 +68,7 @@ const AppBar = () => {
     return (
         <Bar position="fixed" className={classes.appBar}>
             <Toolbar>
+                <img style={{maxHeight: 60}} src="/logo-white.png"></img>
                 <Typography variant="h6" className={classes.title} onClick={()=>history.push('/')}> Pass the Story</Typography>
                 {/*<div className={classes.search}>
                     <div className={classes.searchIcon}>

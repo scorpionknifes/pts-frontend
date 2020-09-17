@@ -1,0 +1,44 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - master
+  
+  pool:
+    vmImage: 'ubuntu-latest'
+  
+  variables:
+    - name: CacheRestored
+      value: 'false' 
+  
+  steps:
+  - task: Cache@2
+    displayName: Cache
+    inputs:
+      key: 'yarn | $(Agent.OS) | ./yarn.lock'
+      path: './node_modules'
+      cacheHitVar: CacheRestored
+  
+  - script: yarn install
+    displayName: Install Dependencies
+    condition: ne(variables['CacheRestored'], 'true')
+  
+  - script: yarn run build
+    displayName: Build application
+  
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: './build'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+  
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+  © 2020 GitHub, Inc.

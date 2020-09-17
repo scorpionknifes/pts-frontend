@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { AppBar, Spinner, StoryCard } from '../../Components';
 import { Grid } from '@material-ui/core';
@@ -6,6 +6,7 @@ import AddButton from '../../Components/Button/AddButton';
 import { StoriesQuery } from '../../GraphQL';
 import { useQuery } from '@apollo/client';
 import { Story } from '../../GraphQL/Types/StoryType';
+import { StoriesSubscription } from '../../GraphQL/Queries/StoryQuery';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -24,9 +25,18 @@ const useStyles = makeStyles((theme: Theme) =>
 const HomePage = () => {
     const classes = useStyles()
 
-    const { loading, data } = useQuery<{stories: Story[]}>(
+    const { subscribeToMore, loading, data } = useQuery<{ stories: Story[] }>(
         StoriesQuery
     );
+
+    useEffect(() => {
+        subscribeToMore({
+            document: StoriesSubscription,
+            updateQuery(prev, { subscriptionData }) {
+                return { stories: [...prev.stories, ...subscriptionData.data.stories] }
+            }
+        })
+    }, [subscribeToMore])
 
     if (loading) {
         return <Spinner />

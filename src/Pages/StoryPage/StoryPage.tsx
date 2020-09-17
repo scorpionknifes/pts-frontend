@@ -52,7 +52,12 @@ const StoryPage = () => {
         variables: { id: parseInt(id) }
     });
 
+    useEffect(() => {
+        if (data !== undefined) {
+            setPlayers(GenerateAllColor(data?.story.turns))
+        }
 
+    }, [data])
 
 
     useEffect(() => {
@@ -80,15 +85,15 @@ const StoryPage = () => {
     );
 }
 
-const GenerateAllColor = (data: StoryType[]): Players => {
+const GenerateAllColor = (data: Turn[]): Players => {
     let players: Players = {}
-    data.map(storyType => players[storyType.name] = RandomColor())
+    data.map(turn => players[turn.user.name] = RandomColor())
     return players
 }
 
 const GenerateColor = (turn: Turn, players: Players): Players => {
     if (players[turn.user.name] === null) {
-
+        players[turn.user.name] = RandomColor()
     }
     return players
 }

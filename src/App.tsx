@@ -4,9 +4,12 @@ import './App.css'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
+//apollo
+import {client} from './GraphQL'
+
 // pages
 import { HomePage, StoryPage, AddStoryPage } from './Pages'
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
 
 
 const theme = createMuiTheme({
@@ -20,15 +23,6 @@ const theme = createMuiTheme({
         },
     },
 });
-
-const httpLink = createHttpLink({
-    uri: process.env.REACT_APP_GRAPHQL_URL
-})
-
-const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    link: httpLink,
-})
 
 const App = () => {
     return (

@@ -23,5 +23,12 @@ const StoryQuery = gql`
     ${StoryFragment}
     ${TurnFragment}
 `
+const StoriesSubscription = gql`
+    subscription StoriesSubscription {
+        stories{
+            ...StoryFragment
+        }
+    }
+`
 
-export { StoriesQuery, StoryQuery }
+export { StoriesQuery, StoryQuery, StoriesSubscription }

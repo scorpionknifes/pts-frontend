@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { fade, Theme, AppBar as Bar, Typography, InputBase, Toolbar, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../Contexts/UserContext';
 
 const useStyles = makeStyles((theme: Theme) => ({
     grow: {
@@ -61,8 +62,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 
 const AppBar = () => {
-    const classes = useStyles();
-    const history = useHistory();
+    const {username} = useContext(UserContext)
+    const classes = useStyles()
+    const history = useHistory()
     return (
         <Bar position="fixed" className={classes.appBar}>
             <Toolbar>
@@ -81,7 +83,7 @@ const AppBar = () => {
                     />
                 </div>
                 <div className={classes.grow} />
-                <Button color="inherit">Anonymous2123</Button>
+                <Button color="inherit">{username}</Button>
             </Toolbar>
         </Bar>
     )

@@ -10,4 +10,12 @@ const TurnsSubscription = gql`
     ${TurnFragment}
 `
 
-export { TurnsSubscription }
+const TurnCreate = gql`
+    mutation CreateTurn($input: TurnInput!) {
+        createTurn(input: $input) {
+            ...TurnFragment
+        }
+    }
+    ${TurnFragment}
+`
+export { TurnsSubscription, TurnCreate }

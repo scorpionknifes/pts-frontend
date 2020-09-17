@@ -29,6 +29,16 @@ const StoriesSubscription = gql`
             ...StoryFragment
         }
     }
+    ${StoryFragment}
 `
 
-export { StoriesQuery, StoryQuery, StoriesSubscription }
+const StoryCreate = gql`
+    mutation CreateStory($input: StoryInput!){
+        createStory(input: $input){
+            ...StoryFragment
+        }
+    }
+    ${StoryFragment}
+`
+
+export { StoriesQuery, StoryQuery, StoriesSubscription, StoryCreate }

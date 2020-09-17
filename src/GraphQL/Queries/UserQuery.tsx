@@ -19,4 +19,13 @@ const UserQuery = gql`
     ${UserFragment}
 `
 
-export { UsersQuery, UserQuery }
+const UserCreate = gql`
+    mutation UserCreate {
+        createUser {
+            ...UserFragment
+        }
+    }
+    ${UserFragment}
+`
+
+export { UsersQuery, UserQuery, UserCreate }

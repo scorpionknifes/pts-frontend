@@ -28,7 +28,13 @@ steps:
 
 - script: yarn run build
   displayName: Build application
-
+  
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'wwwroot'
+    Contents: 'web.config'
+    TargetFolder: 'build'
+    
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: './build'

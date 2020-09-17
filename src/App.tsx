@@ -23,6 +23,14 @@ const theme = createMuiTheme({
             xl: 1920,
         },
     },
+    palette: {
+        primary: {
+            main: '#c30000',
+        },
+        secondary: {
+            main: '#c30000',
+        },
+    },
 });
 
 const App = () => {

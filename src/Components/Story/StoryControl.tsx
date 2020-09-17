@@ -12,6 +12,7 @@ const StoryControl = (props: StoryControlProps) => {
     const handleButton = (e: any) => {
         e.preventDefault()
         props.handleTurn(input)
+        setInput("")
     }
     return <>
         <Grid container justify="center" style={{ position: 'fixed', zIndex: 10000, bottom: 50, left: 0, right: 0 }}>

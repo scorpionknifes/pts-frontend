@@ -41,4 +41,3 @@ trigger:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
       publishLocation: 'Container'
-  © 2020 GitHub, Inc.

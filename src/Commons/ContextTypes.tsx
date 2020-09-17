@@ -8,3 +8,7 @@ export type UserContextType = {
     username: string | null,
     userID: number | null,
 }
+
+export type ParamType = {
+    id: string
+}

@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client'
 import StoryFragment from '../Fragments/StoryFragment'
 import TurnFragment from '../Fragments/TurnFragment'
+import UserFragment from '../Fragments/UserFragment'
 
 const StoriesQuery = gql`
     query Stories {
@@ -12,14 +13,18 @@ const StoriesQuery = gql`
 `
 
 const StoryQuery = gql`
-    query Story($id: ID!) {
+    query Story($id: Int!) {
         story(id: $id) {
             ...StoryFragment
             turns{
                 ...TurnFragment
+                user{
+                    ...UserFragment
+                }
             }
         }
     }
+    ${UserFragment}
     ${StoryFragment}
     ${TurnFragment}
 `

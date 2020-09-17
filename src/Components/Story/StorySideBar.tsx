@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type StorySideBarProps = {
     players: Players,
-    online: string[],
+    active: string[],
     select: string,
     setSelect: (select: string)=> void
 }
 
 const StorySideBar = (props: StorySideBarProps) => {
     const classes = useStyles();
-    const { online, offline } = FindOnline(props.players, props.online)
+    const { active, inactive } = FindOnline(props.players, props.active)
 
     const Player = (player: string) => {
         return <Typography
@@ -52,12 +52,12 @@ const StorySideBar = (props: StorySideBarProps) => {
         <div className={classes.toolbar} />
         <Container>
             <Typography variant="h6">Active</Typography>
-            {[...Object.keys(online)].map(Player)}
+            {[...Object.keys(active)].map(Player)}
         </Container>
         <Divider />
         <Container>
             <Typography variant="h6">Older</Typography>
-            {[...Object.keys(offline)].map(Player)}
+            {[...Object.keys(inactive)].map(Player)}
         </Container>
         <Divider />
     </Drawer>
@@ -73,7 +73,7 @@ const FindOnline = (players: Players, online: string[]) => {
             offlinePlayers[player] = players[player];
         }
     }
-    return { online: onlinePlayers, offline: offlinePlayers }
+    return { active: onlinePlayers, inactive: offlinePlayers }
 }
 
 export default StorySideBar

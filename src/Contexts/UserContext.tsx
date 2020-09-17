@@ -28,7 +28,6 @@ const UserProvider = ({ children }: Props) => {
             setUserID(localUserID? parseInt(`${localUserID}`):null)
             setUsername(localUsername)
         }
-        
     },[])
 
     return (

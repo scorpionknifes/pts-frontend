@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 import AddButton from '../../Components/Button/AddButton';
 import { StoriesQuery } from '../../GraphQL';
 import { useQuery } from '@apollo/client';
-import { Stories } from '../../GraphQL/Types/StoryType';
+import { Story } from '../../GraphQL/Types/StoryType';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const HomePage = () => {
     const classes = useStyles()
 
-    const { loading, data } = useQuery<Stories>(
+    const { loading, data } = useQuery<{stories: Story[]}>(
         StoriesQuery
     );
 

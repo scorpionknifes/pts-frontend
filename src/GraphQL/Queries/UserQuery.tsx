@@ -11,7 +11,7 @@ const UsersQuery = gql`
 `
 
 const UserQuery = gql`
-    query User($id: ID!) {
+    query User($id: Int!) {
         user(id: $id) {
             ...UserFragment
         }

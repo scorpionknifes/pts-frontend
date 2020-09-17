@@ -69,7 +69,7 @@ const AppBar = () => {
         <Bar position="fixed" className={classes.appBar}>
             <Toolbar>
                 <Typography variant="h6" className={classes.title} onClick={()=>history.push('/')}> Pass the Story</Typography>
-                <div className={classes.search}>
+                {/*<div className={classes.search}>
                     <div className={classes.searchIcon}>
                         <SearchIcon />
                     </div>
@@ -81,7 +81,7 @@ const AppBar = () => {
                         }}
                         inputProps={{ 'aria-label': 'search' }}
                     />
-                </div>
+                    </div>*/}
                 <div className={classes.grow} />
                 <Button color="inherit">{username}</Button>
             </Toolbar>

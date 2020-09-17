@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, createStyles, Divider, Drawer, makeStyles, Theme, Typography } from '@material-ui/core'
-import { Players } from '../../Commons/StoryTypes';
+import { Players } from '../../Commons/StoryTypes'
+import ShareLink from 'react-facebook-share-link'
 
 const drawerWidth = 240;
 
@@ -21,7 +22,7 @@ type StorySideBarProps = {
     players: Players,
     active: string[],
     select: string,
-    setSelect: (select: string)=> void
+    setSelect: (select: string) => void
 }
 
 const StorySideBar = (props: StorySideBarProps) => {
@@ -60,6 +61,12 @@ const StorySideBar = (props: StorySideBarProps) => {
             {[...Object.keys(inactive)].map(Player)}
         </Container>
         <Divider />
+        <ShareLink>
+            {(link: string | undefined) => (
+                <a style={{margin: 'auto'}} href={link} target='_blank'><Typography>Share this on Facebook</Typography></a>
+            )}
+        </ShareLink>
+
     </Drawer>
 }
 

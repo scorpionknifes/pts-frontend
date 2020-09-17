@@ -51,12 +51,12 @@ const StorySideBar = (props: StorySideBarProps) => {
     >
         <div className={classes.toolbar} />
         <Container>
-            <Typography variant="h6">Online</Typography>
+            <Typography variant="h6">Active</Typography>
             {[...Object.keys(online)].map(Player)}
         </Container>
         <Divider />
         <Container>
-            <Typography variant="h6">Offline</Typography>
+            <Typography variant="h6">Older</Typography>
             {[...Object.keys(offline)].map(Player)}
         </Container>
         <Divider />

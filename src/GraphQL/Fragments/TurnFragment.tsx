@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 const TurnFragment = gql`
-    fragment TurnFragment on Device {
+    fragment TurnFragment on Turn {
         id
         user
         story

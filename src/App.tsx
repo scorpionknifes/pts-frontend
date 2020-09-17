@@ -31,7 +31,7 @@ const App = () => {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={HomePage} />
-                        <Route exact path="/story" component={StoryPage} />
+                        <Route exact path="/story/:id" component={StoryPage} />
                         <Route exact path="/new" component={AddStoryPage} />
                     </Switch>
                 </Router>

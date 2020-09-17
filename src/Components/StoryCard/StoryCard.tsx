@@ -6,10 +6,10 @@ import Tag from '../Tag/Tag';
 
 type StoryCardProps = {
     name: string,
-    online: number,
+    count: number,
     people: number,
     tags: string[],
-    id: string,
+    id: number,
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -49,9 +49,9 @@ const StoryCard = (props: StoryCardProps) => {
                 <Grid className={classes.tags} >
                     {props.tags.map((tag, i) => <Tag key={i} name={tag}></Tag>)}
                 </Grid>
-                <Typography style={{ color: '#32CD32', fontWeight: 'bold' }}>{props.online}</Typography>
+                <Typography style={{ color: '#32CD32', fontWeight: 'bold' }}>{props.people}</Typography>
                 <Typography>/</Typography>
-                <Typography style={{ fontWeight: 'bold' }}>{props.people}</Typography>
+                <Typography style={{ fontWeight: 'bold' }}>{props.count}</Typography>
             </Grid>
         </Paper>
         <TouchRipple/>

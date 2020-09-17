@@ -1,7 +1,7 @@
 import {gql} from '@apollo/client'
 
 const UserFragment = gql`
-    fragment UserFragment on Device {
+    fragment UserFragment on User {
         id
         name
         createdAt

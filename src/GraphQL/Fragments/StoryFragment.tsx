@@ -1,13 +1,12 @@
 import { gql } from '@apollo/client'
 
 const StoryFragment = gql`
-    fragment StoryFragment on Device {
+    fragment StoryFragment on Story {
         id
         name
         count
         people
         tags
-        turns
         createdAt
         updatedAt
     }

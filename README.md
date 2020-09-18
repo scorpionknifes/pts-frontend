@@ -13,6 +13,8 @@ The following project uses:
 - Apollo - subscriptions, etc
 - GraphQL
 
+Notes - website requires websockets, adblock extension blocks websocket connection causing gameplay to fail. Please disable adblock until work around is available.
+
 [Microsoft Student Accelerator](http://aka.ms/nzmsawebsite)
 [2020-Phase-2](https://github.com/NZMSA/2020-Phase-2)
 
